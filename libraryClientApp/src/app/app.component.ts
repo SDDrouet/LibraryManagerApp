@@ -9,7 +9,7 @@ import { MenuItem } from 'primeng/api';
 })
 export class AppComponent implements OnInit {
   title = 'libraryClientApp';
-  items: MenuItem[] = [];
+  items: MenuItem[];
 
   autors: any[] = [];
 

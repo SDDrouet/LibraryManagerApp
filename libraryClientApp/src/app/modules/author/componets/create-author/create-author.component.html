@@ -1,0 +1,21 @@
+<p-card>
+    <form [formGroup]="frmAuthor" (ngSubmit)="onSubmit()">
+        <div class="flex flex-wrap flex-column justify-content-center align-items-center align-content-center w-full">
+            <div class="w-full">
+                <span class="p-float-label w-full">
+                    <input pInputText id="firstName" autofocus  autocomplete="off" formControlName="firstName" [style]="{'width': '100%'}" />
+                    <label htmlFor="firstName">Nombre</label>
+                </span>
+            </div>
+            <div class="w-full pt-4">
+                <span class="p-float-label w-full">
+                    <input pInputText id="lastName" autocomplete="off" formControlName="lastName" [style]="{'width': '100%'}" />
+                    <label htmlFor="lastName">Apellido</label>
+                </span>
+            </div>
+            <div class="w-full pt-4 flex justify-content-end">
+                <p-button type="submit"  label="Guardar" icon="pi pi-save"[disabled]="!frmAuthor.valid"></p-button>
+            </div>
+        </div>
+    </form>
+</p-card>

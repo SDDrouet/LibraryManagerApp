@@ -22,13 +22,13 @@ public class BookController {
     }
 
     @MutationMapping
-    public Book createBook(@Argument String name, @Argument int pageCount, @Argument String authorId) {
-        return Book.create(name, pageCount, authorId);
+    public Book createBook(@Argument String name, @Argument int pageCount, @Argument String authorId, @Argument float price, @Argument int year) {
+        return Book.create(name, pageCount, authorId, price, year);
     }
 
     @MutationMapping
-    public Book updateBook(@Argument String id, @Argument String name, @Argument int pageCount, @Argument String authorId) {
-        return Book.update(id, name, pageCount, authorId).orElse(null);
+    public Book updateBook(@Argument String id, @Argument String name, @Argument int pageCount, @Argument String authorId, @Argument float price, @Argument int year) {
+        return Book.update(id, name, pageCount, authorId, price, year).orElse(null);
     }
 
     @MutationMapping

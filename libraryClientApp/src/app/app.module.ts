@@ -8,7 +8,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MenubarModule } from 'primeng/menubar';
-
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { CardModule } from 'primeng/card';
+import { TooltipModule } from 'primeng/tooltip';
 
 
 @NgModule({
@@ -22,7 +24,10 @@ import { MenubarModule } from 'primeng/menubar';
     BrowserAnimationsModule,
     GraphQLModule,
     HttpClientModule,
-    MenubarModule
+    MenubarModule,
+    DynamicDialogModule,
+    CardModule,
+    TooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

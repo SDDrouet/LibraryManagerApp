@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public record Book (String id, String name, int pageCount, String authorId) {
+public record Book (String id, String name, int pageCount, String authorId, float price, int year) {
 
     private static List<Book> books = new ArrayList<>();
     private static final FileStorage fileStorage = new FileStorage();
@@ -24,18 +24,18 @@ public record Book (String id, String name, int pageCount, String authorId) {
         return new ArrayList<>(books);
     }
 
-    public static Book create(String name, int pageCount, String authorId) {
+    public static Book create(String name, int pageCount, String authorId, float price, int year) {
         String id = "book-" + (books.size() + 1);
-        Book book = new Book(id, name, pageCount, authorId);
+        Book book = new Book(id, name, pageCount, authorId, price, year);
         books.add(book);
         fileStorage.saveBooks(books);
         return book;
     }
 
-    public static Optional<Book> update(String id, String name, int pageCount, String authorId) {
+    public static Optional<Book> update(String id, String name, int pageCount, String authorId, float price, int year) {
         for (int i = 0; i < books.size(); i++) {
             if (books.get(i).id().equals(id)) {
-                Book updatedBook = new Book(id, name, pageCount, authorId);
+                Book updatedBook = new Book(id, name, pageCount, authorId, price, year);
                 books.set(i, updatedBook);
                 fileStorage.saveBooks(books);
                 return Optional.of(updatedBook);

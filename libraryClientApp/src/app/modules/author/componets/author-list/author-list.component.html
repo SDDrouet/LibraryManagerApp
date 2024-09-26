@@ -1,1 +1,33 @@
-<p>author-list works!</p>
+<p-toast></p-toast>
+<div>
+    <div class="flex justify-content-start align-items-center relative h-2rem">
+        <div>
+            <strong>Lista de Autores</strong>
+        </div>
+        <div class="absolute right-0 z-5">
+            <p-button (onClick)="showCreateAuthor()" type="button" icon="pi pi-plus" styleClass="p-button-text" pTooltip="Nuevo Autor"></p-button>
+        </div>
+    </div>
+        
+    <p-table [value]="authors" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [rowsPerPageOptions]="[10, 25, 50]">
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width:20%">ID</th>
+                <th style="width:30%">Nombre</th>
+                <th style="width:40%">Apellido</th>
+                <th style="width:10%">Acción</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-author>
+            <tr>
+                <td>{{ author.id }}</td>
+                <td>{{ author.firstName }}</td>
+                <td>{{ author.lastName }}</td>
+                <td><i (click)="show(author.id)" class="pi pi-eye cursor-pointer" pTooltip="Ver"></i>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
