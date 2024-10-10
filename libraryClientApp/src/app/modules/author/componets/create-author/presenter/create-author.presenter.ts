@@ -10,9 +10,15 @@ export class CreateAuthorPresenter implements Presenter{
 
     constructor(private authorService: AuthorService) {}
 
-    saveAuthor(author: Author): boolean {
-        console.log(author);
-
-        return true;
+    saveAuthor(author: Author) {
+        this.authorService.saveAuthor(author).subscribe(
+            () => {
+                this.view?.showSuccess('Exito', 'Autor Guardado con exito');
+                this.view?.closeDialog()
+            },
+            (error) => {
+                console.error(error);
+            }
+        );
     }
 }

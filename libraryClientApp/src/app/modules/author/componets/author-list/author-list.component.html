@@ -1,4 +1,5 @@
-<p-toast></p-toast>
+<p-toast key="tst" [style]="{marginTop: '70px'}"></p-toast>
+<p-confirmDialog [style]="{width: '600px'}"></p-confirmDialog>
 <div>
     <div class="flex justify-content-start align-items-center relative h-2rem">
         <div>
@@ -14,18 +15,20 @@
         [rowsPerPageOptions]="[10, 25, 50]">
         <ng-template pTemplate="header">
             <tr>
-                <th style="width:20%">ID</th>
+                <th style="width:10%">#</th>
                 <th style="width:30%">Nombre</th>
-                <th style="width:40%">Apellido</th>
+                <th style="width:50%">Apellido</th>
                 <th style="width:10%">Acción</th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-author>
+        <ng-template pTemplate="body" let-author let-i="rowIndex">
             <tr>
-                <td>{{ author.id }}</td>
+                <td>{{ i + 1 }}</td>
                 <td>{{ author.firstName }}</td>
                 <td>{{ author.lastName }}</td>
-                <td><i (click)="show(author.id)" class="pi pi-eye cursor-pointer" pTooltip="Ver"></i>
+                <td>
+                    <i (click)="show(author.id)" class="pi pi-eye cursor-pointer" pTooltip="Ver"></i>
+                    <i (click)="showDeleteConfirmation(author)" class="ml-2 pi pi-trash cursor-pointer" pTooltip="Eliminar"></i>
                 </td>
             </tr>
         </ng-template>

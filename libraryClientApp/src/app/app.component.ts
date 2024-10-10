@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Apollo, gql } from 'apollo-angular';
 import { MenuItem } from 'primeng/api';
 
 @Component({
@@ -8,12 +7,9 @@ import { MenuItem } from 'primeng/api';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'libraryClientApp';
   items: MenuItem[];
 
-  autors: any[] = [];
-
-  constructor(private readonly apollo: Apollo) {
+  constructor() {
     this.items = [
       {
         label: 'Inicio',
@@ -33,23 +29,5 @@ export class AppComponent implements OnInit {
     ];
   }
 
-  ngOnInit(): void {
-    this.apollo
-      .watchQuery({
-        query: gql`
-            {
-              allAuthors {
-                  id
-                  firstName
-                  lastName
-              }
-          }
-        `,
-      })
-      .valueChanges.subscribe((result: any) => {
-        this.autors = result.data?.allAuthors;
-
-        console.log(this.autors);
-      });
-  }
+  ngOnInit(): void { }
 }

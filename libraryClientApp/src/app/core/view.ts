@@ -1,3 +1,7 @@
 export interface View {
-    showMessage(msg: string): void;
+    showMessage(message: string): void;
+    showInfo(title: string, detail: string): void;
+    showSuccess(title: string, detail: string): void;
+    showWarn(title: string, detail: string): void;
+    showError(title: string, detail: string): void;
 }

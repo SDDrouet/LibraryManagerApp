@@ -11,6 +11,9 @@ import { MenubarModule } from 'primeng/menubar';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { CardModule } from 'primeng/card';
 import { TooltipModule } from 'primeng/tooltip';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+
 
 
 @NgModule({
@@ -27,9 +30,10 @@ import { TooltipModule } from 'primeng/tooltip';
     MenubarModule,
     DynamicDialogModule,
     CardModule,
-    TooltipModule
+    TooltipModule,
+    ToastModule
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

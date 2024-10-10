@@ -4,19 +4,20 @@ import { ViewAuthorView } from './view-author.view';
 import { Author } from 'src/app/model.ts/author.model';
 import { ViewAuthorPresenter } from './presenter/view-author.presenter';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { MessageService } from 'primeng/api';
 
 
 @Component({
     selector: 'app-view-author',
     templateUrl: './view-author.component.html',
     styleUrls: ['./view-author.component.scss'],
-    providers: [ViewAuthorPresenter]
+    providers: [ViewAuthorPresenter, MessageService]
 })
 export class ViewAuthorComponent extends AbstractView implements OnInit, ViewAuthorView {
     author: Author = {};
 
-    constructor(private viewAuthorPresenter: ViewAuthorPresenter, public config: DynamicDialogConfig) {
-        super();
+    constructor(public messageService: MessageService, private viewAuthorPresenter: ViewAuthorPresenter, public config: DynamicDialogConfig) {
+        super(messageService);
         viewAuthorPresenter.view = this;
     }
 

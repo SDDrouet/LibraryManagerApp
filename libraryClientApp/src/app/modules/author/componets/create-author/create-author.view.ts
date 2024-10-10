@@ -7,6 +7,5 @@ export interface CreateAuthorView extends View {
     frmAuthor: FormGroup;
 
     initFrmAuthor(): FormGroup;
-    onSubmit(): void;
-    saveAuthor(): void;
+    closeDialog() : void;
 }

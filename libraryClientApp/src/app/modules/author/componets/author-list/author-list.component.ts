@@ -6,20 +6,21 @@ import { AuthorListPresenter } from './presenter/author-list.presenter';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ViewAuthorComponent } from '../view-author/view-author.component';
 import { CreateAuthorComponent } from '../create-author/create-author.component';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
     selector: 'app-author-list',
     templateUrl: './author-list.component.html',
     styleUrls: ['./author-list.component.scss'],
-    providers: [AuthorListPresenter, DialogService, MessageService]
+    providers: [AuthorListPresenter, DialogService, MessageService, ConfirmationService]
 })
 export class AuthorListComponent extends AbstractView implements OnInit, AuthorListView {
     authors: Author[] = [];
     ref: DynamicDialogRef | undefined;
 
-    constructor(private authorListPresenter: AuthorListPresenter, private messageService: MessageService, public dialogService: DialogService) {
-        super();
+    constructor(public messageService: MessageService, private authorListPresenter: AuthorListPresenter,
+        public dialogService: DialogService, private confirmationService: ConfirmationService) {
+        super(messageService);
         authorListPresenter.view = this;
     }
 
@@ -31,7 +32,7 @@ export class AuthorListComponent extends AbstractView implements OnInit, AuthorL
         this.ref = this.dialogService.open(ViewAuthorComponent, {
             header: 'Autor',
             modal: true,
-            width: '70%',
+            width: '30%',
             data: {
                 authorId: id
             }
@@ -40,10 +41,27 @@ export class AuthorListComponent extends AbstractView implements OnInit, AuthorL
 
     showCreateAuthor() {
         this.ref = this.dialogService.open(CreateAuthorComponent, {
-            header: 'Crear Autor',
+            header: 'Crear Nuevo Autor',
             modal: true,
             closeOnEscape: false,
             width: '30%'
+        });
+    }
+
+    showDeleteConfirmation(author: Author) {
+        this.confirmationService.confirm({
+            message: `Esta seguro de eliminar el AUTOR: ${author.firstName} ${author.lastName}`,
+            header: 'Confirmación',
+            acceptLabel: 'Eliminar',
+            rejectLabel: 'Cancelar',
+            icon: 'pi pi-exclamation-triangle',
+            accept: () => {
+                try {
+                    this.authorListPresenter.deleteAuthor(author);
+                } catch (error) {
+                    this.showError('Error', 'Ocurrio un problema al eliminar el autor');
+                }
+            }
         });
     }
 

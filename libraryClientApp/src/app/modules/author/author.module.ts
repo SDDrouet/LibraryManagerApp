@@ -14,6 +14,11 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { ToastModule } from 'primeng/toast';
 import { MessagesModule } from 'primeng/messages';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { DialogService } from 'primeng/dynamicdialog';
+import { AuthorListPresenter } from './componets/author-list/presenter/author-list.presenter';
+import { CreateAuthorPresenter } from './componets/create-author/presenter/create-author.presenter';
 
 
 @NgModule({
@@ -33,7 +38,16 @@ import { MessagesModule } from 'primeng/messages';
     ReactiveFormsModule,
     InputTextModule,
     ToastModule,
-    MessagesModule
+    MessagesModule,
+    ConfirmDialogModule
+  ],
+  providers: [
+    ConfirmationService,
+    MessageService,
+    DialogService,
+
+    AuthorListPresenter,
+    CreateAuthorPresenter
   ]
 })
 export class AuthorModule { }
